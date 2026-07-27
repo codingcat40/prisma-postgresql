@@ -5,6 +5,7 @@
 /.windsurf
 /.agents
 /.claude
+/components/ui
 /.pnp
 .pnp.*
 .yarn/*
