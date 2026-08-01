@@ -6,6 +6,7 @@
 /.agents
 /.claude
 /components/ui
+/generated
 /.pnp
 .pnp.*
 .yarn/*
