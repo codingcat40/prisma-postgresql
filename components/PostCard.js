@@ -1,5 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+// components/PostCard.js
+
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function PostCard({ post }) {
   return (
@@ -15,17 +17,14 @@ export default function PostCard({ post }) {
         />
       ) : (
         <div className="flex h-40 w-full items-center justify-center bg-muted text-muted-foreground">
-          No Image
+          No image
         </div>
       )}
-
       <div className="p-4">
         <h3 className="font-semibold line-clamp-1">{post.title}</h3>
-
         <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
           {post.description}
         </p>
-
         <p className="mt-2 text-xs text-muted-foreground">
           {new Date(post.createdAt).toLocaleDateString()}
         </p>
