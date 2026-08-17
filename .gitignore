@@ -16,6 +16,11 @@ generated/
 !.yarn/releases
 !.yarn/versions
 
+
+public/uploads/*
+!public/uploads/.gitkeep
+
+
 # testing
 /coverage
 

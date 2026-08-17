@@ -10,11 +10,14 @@ export default function PostCard({ post }) {
       className="block overflow-hidden rounded-lg border transition hover:shadow-md"
     >
       {post.imageUrl ? (
-        <Image
-          src={post.imageUrl}
-          alt={post.title}
-          className="h-40 w-full object-cover"
-        />
+        <div className="relative h-40 w-full">
+          <Image
+            src={post.imageUrl}
+            alt={post.title}
+            fill
+            className="object-cover"
+          />
+        </div>
       ) : (
         <div className="flex h-40 w-full items-center justify-center bg-muted text-muted-foreground">
           No image
