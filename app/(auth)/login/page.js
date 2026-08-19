@@ -1,20 +1,9 @@
-"use client";
+'use client';
 
-import { useActionState, useEffect } from "react";
-import { logIn } from "@/lib/actions/auth.actions";
-import { useRouter } from "next/navigation";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-
-import Link from "next/link";
+import { useActionState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { logIn } from '@/lib/actions/auth.actions';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(logIn, null);
@@ -22,62 +11,75 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (state?.success) {
-      router.push("/");
+      router.push('/');
       router.refresh();
     }
   }, [state, router]);
 
+  const today = new Date().toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Welcome Back</CardTitle>
-          <CardDescription>Sign In to your account</CardDescription>
-        </CardHeader>
+    <div className="flex min-h-screen items-center justify-center bg-white px-6 py-16">
+      <div className="w-full max-w-sm">
+        {/* Masthead */}
+        <div className="flex items-center justify-between border-t-2 border-b border-neutral-900 py-1.5 text-[11px] uppercase tracking-[0.15em] text-neutral-500">
+          <span>{today}</span>
+          <span>Sign in</span>
+        </div>
 
-        <CardContent>
-          <form action={formAction} className="space-y-4">
+        <h1 className="mt-8 font-serif text-[2.25rem] italic leading-[1.1] text-neutral-900">
+          Welcome back.
+        </h1>
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-                required
-              />
-            </div>
+        <form action={formAction} className="mt-8 space-y-6">
+          <label className="block">
+            <span className="block text-[11px] uppercase tracking-[0.1em] text-neutral-500">
+              Email
+            </span>
+            <input
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              required
+              className="mt-2 w-full border-0 border-b border-neutral-300 bg-transparent px-0 py-2 text-[15px] text-neutral-900 outline-none transition-colors placeholder:text-neutral-400 focus:border-neutral-900"
+            />
+          </label>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="••••••••"
-                required
-                
-              />
-            </div>
+          <label className="block">
+            <span className="block text-[11px] uppercase tracking-[0.1em] text-neutral-500">
+              Password
+            </span>
+            <input
+              name="password"
+              type="password"
+              placeholder="••••••••"
+              required
+              className="mt-2 w-full border-0 border-b border-neutral-300 bg-transparent px-0 py-2 text-[15px] text-neutral-900 outline-none transition-colors placeholder:text-neutral-400 focus:border-neutral-900"
+            />
+          </label>
 
-            {state?.error && (
-              <p className="text-sm text-red-600">{state.error}</p>
-            )}
+          {state?.error && <p className="text-sm text-red-700">{state.error}</p>}
 
-            <Button type="submit" className="w-full" disabled={isPending}>
-              {isPending ? "Logging In ... " : "Log In"}
-            </Button>
-          </form>
+          <button
+            type="submit"
+            disabled={isPending}
+            className="w-full bg-neutral-900 py-3 text-[13px] uppercase tracking-[0.15em] text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+          >
+            {isPending ? 'Signing in…' : 'Sign in'}
+          </button>
+        </form>
 
-          <p className="mt-4 text-center text-sm text-muted-foreground">
-            New Account?
-            <Link href="/signup" className="underline">
-              Sign Up
-            </Link>
-          </p>
-        </CardContent>
-      </Card>
+        <div className="mt-10 border-t border-neutral-200 pt-6 text-center text-sm text-neutral-500">
+          New here?{' '}
+          <Link href="/signup" className="text-neutral-900 underline underline-offset-2">
+            Create an account
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
