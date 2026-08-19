@@ -6,7 +6,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import DeletePostButton from '@/components/DeletePostButton';
 
 export default async function PostPage({ params }) {
   const { id } = await params;
@@ -46,7 +45,7 @@ export default async function PostPage({ params }) {
             <Button asChild variant="outline">
               <Link href={`/post/${post.id}/edit`}>Edit</Link>
             </Button>
-            <DeletePostButton postId={post.id} />
+            
           </div>
         )}
       </div>
