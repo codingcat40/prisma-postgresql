@@ -6,7 +6,6 @@ generated/
 /.windsurf
 /.agents
 /.claude
-/components/ui
 /generated
 /.pnp
 .pnp.*
